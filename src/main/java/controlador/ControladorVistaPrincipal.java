@@ -18,6 +18,7 @@ import vista.VistaMateriaGui;
 import vista.VistaPrincipal;
 import vista.VistaGrupoGui;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -35,20 +36,21 @@ public class ControladorVistaPrincipal implements ActionListener {
         if (e.getSource() == vistaPrincipal.btnConsultar) {
             String opcion = vistaPrincipal.cmbxOpciones.getSelectedItem().toString();
             if (opcion.equals("Alta Especialidad")) {
-                DAOEspecialidad d1 = new DAOEspecialidad();
-                d1.consultar();
+                ConsultarEspecialidad c1=new ConsultarEspecialidad();
+                c1.consultar();
             }
             if (opcion.equals("Alta Catedratico")) {
                 DAOCatedratico d2 = new DAOCatedratico();
                 d2.consultar();
             }
             if (opcion.equals("Alta Alumno")) {
+
                 DAOAlumno d2 = new DAOAlumno();
                 d2.consultar();
             }
             if (opcion.equals("Alta Materia")) {
-                DAOMateria d2 = new DAOMateria();
-                d2.consultar();
+                DAOMateria d4 = new DAOMateria();
+                d4.consultar();
             }
             if (opcion.equals("Alta Grupo")) {
                 DAOGrupo d1 = new DAOGrupo();

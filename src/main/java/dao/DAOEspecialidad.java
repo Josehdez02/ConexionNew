@@ -7,13 +7,13 @@ import vista.ConsultarEspecialidad;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DAOEspecialidad implements  DAOGeneral<Integer, ModeloEspecialidad> {
     private Conexion conexion;
-    //public final static List<ModeloEspecialidad> lista= new ArrayList<>();
     public DAOEspecialidad(){
         conexion=new Conexion();
     }
@@ -41,9 +41,9 @@ public class DAOEspecialidad implements  DAOGeneral<Integer, ModeloEspecialidad>
     @Override
     public List<ModeloEspecialidad> consultar() {
         List<ModeloEspecialidad> lista= new ArrayList<>();
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("ID");
-        modelo.addColumn("Nombre");
+       // DefaultTableModel modelo = new DefaultTableModel();
+       // modelo.addColumn("ID");
+       // modelo.addColumn("Nombre");
         if (conexion.abrir()){
             String sql = "SELECT * FROM especialidad";
             Connection enlace= conexion.obtener();
@@ -55,11 +55,12 @@ public class DAOEspecialidad implements  DAOGeneral<Integer, ModeloEspecialidad>
                     especialidad.setId(resultados.getInt("id"));
                     especialidad.setNombre(resultados.getString("nombre"));
                     lista.add(especialidad);
-                    Object[] fila = {especialidad.getId(), especialidad.getNombre()};
-                    modelo.addRow(fila);
+         //           Object[] fila = {especialidad.getId(), especialidad.getNombre()};
+         //           modelo.addRow(fila);
                 }
-                ConsultarEspecialidad c1 = new ConsultarEspecialidad();
-                c1.tableEspecialidad.setModel(modelo);
+             //   ConsultarEspecialidad c1 = new ConsultarEspecialidad();
+           //     c1.tableEspecialidad.setModel(modelo);
+
             }catch (SQLException e){
                 //throw new RuntimeException(e);
                 JOptionPane.showMessageDialog(null,
@@ -84,6 +85,11 @@ public class DAOEspecialidad implements  DAOGeneral<Integer, ModeloEspecialidad>
                 stmt.setString(1,nuevo.getNombre());
                 stmt.setInt(2,id);
                 stmt.executeUpdate();
+              //  DefaultTableModel modelo = (DefaultTableModel) c1.tableEspecialidad.getModel();
+              //  modelo.setValueAt(nuevo.getNombre(),
+                //        stmt.setString(1,nuevo.getNombre()), columnaNombre); // Actualiza el nombre en la fila correspondiente y la columna adecuada
+               // modelo.fireTableDataChanged();
+               // c1.tableEspecialidad.repaint();
                 return true;
             }catch (SQLException e){
                 throw new RuntimeException(e);
