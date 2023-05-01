@@ -1,8 +1,10 @@
 package controlador;
 
+import dao.DAOAlumno;
 import dao.DAOEspecialidad;
 import modelo.ModeloEspecialidad;
-import vista.ConsultarEspecialidad;
+import modelo.ModeloAlumno;
+import vista.VistaAlumnoGui;
 import vista.VistaEspecialidadGui;
 import vista.VistaPrincipal;
 
@@ -20,11 +22,16 @@ public class ControladorVistaPrincipal implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==vistaPrincipal.btnConsultar) {
+        if (e.getSource() == vistaPrincipal.btnConsultar) {
             String opcion = vistaPrincipal.cmbxOpciones.getSelectedItem().toString();
             if (opcion.equals("Alta Especialidad")) {
-                DAOEspecialidad d1=new DAOEspecialidad();
+                DAOEspecialidad d1 = new DAOEspecialidad();
                 d1.consultar();
+            }
+            if (opcion.equals("Alta Alumno")) {
+                DAOAlumno d2 = new DAOAlumno();
+                d2.consultar();
+
 
             }
         } else {
@@ -33,9 +40,12 @@ public class ControladorVistaPrincipal implements ActionListener {
                 VistaEspecialidadGui ve = new VistaEspecialidadGui();
                 ModeloEspecialidad me = new ModeloEspecialidad();
                 ControladorEspecialidadGui ce = new ControladorEspecialidadGui(me, ve);
-            }
+            }else if (opcion.equals("Alta Alumno")) {
+                VistaAlumnoGui va=new VistaAlumnoGui();
+                ModeloAlumno ma = new ModeloAlumno();
+                ControladorAlumnoGui ca = new ControladorAlumnoGui(ma, va);
 
+            }
         }
     }
 }
-//gdg
