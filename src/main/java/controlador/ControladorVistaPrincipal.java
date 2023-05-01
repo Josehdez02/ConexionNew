@@ -1,9 +1,12 @@
 package controlador;
 
 import dao.DAOEspecialidad;
+import dao.DAOMateria;
 import modelo.ModeloEspecialidad;
+import modelo.ModeloMateria;
 import vista.ConsultarEspecialidad;
 import vista.VistaEspecialidadGui;
+import vista.VistaMateriaGui;
 import vista.VistaPrincipal;
 
 import java.awt.event.ActionEvent;
@@ -36,6 +39,23 @@ public class ControladorVistaPrincipal implements ActionListener {
             }
 
         }
+        if (e.getSource()==vistaPrincipal.btnConsultar) {
+            String opcion = vistaPrincipal.cmbxOpciones.getSelectedItem().toString();
+            if (opcion.equals("Alta Materia")) {
+                DAOMateria d2=new DAOMateria();
+                d2.consultar();
+
+            }
+        }
+        else {
+            String opcion = vistaPrincipal.cmbxOpciones.getSelectedItem().toString();
+            if (opcion.equals("Alta Materia")) {
+                VistaMateriaGui vm = new VistaMateriaGui();
+                ModeloMateria mm = new ModeloMateria();
+                ControladorMateriaGui ce = new ControladorMateriaGui(mm, vm);
+            }
+
+        }
     }
 }
-//gdg
+///pruebaaa
