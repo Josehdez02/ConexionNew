@@ -18,13 +18,19 @@ public class VistaGrupoGui extends JFrame {
     public JTextField jtxtHora;
     public JLabel lblSalon;
     public JTextField jtxtSalon;
+    private JComboBox cbxCatedratico;
+    private JLabel lblCatedratico;
+    private JLabel lblAlumno;
+    private JComboBox cbxAlumno;
+    private JLabel lblMateria;
+    private JComboBox cbxMateria;
 
     public VistaGrupoGui(){
         super("Ventana Grupo");
         setContentPane(panelPrincipal);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        setSize(435,140);
+        setSize(800,150);
         setVisible(true);
     }
 }
