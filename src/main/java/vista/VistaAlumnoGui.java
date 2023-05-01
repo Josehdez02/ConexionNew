@@ -4,6 +4,7 @@ import dao.DAOEspecialidad;
 import modelo.ModeloEspecialidad;
 
 import javax.swing.*;
+import java.util.List;
 
 public class VistaAlumnoGui extends JFrame{
     private JPanel panelNorte;
@@ -22,6 +23,7 @@ public class VistaAlumnoGui extends JFrame{
     private JLabel lblNombre;
     private JPanel panelSur;
     public JButton btnActualizar;
+    public JComboBox cbxEspecialidad;
     //public final static ArrayList<ModeloEspecialidad>esepecialida=new ArrayList<>();
 
     public VistaAlumnoGui(){
@@ -30,13 +32,14 @@ public class VistaAlumnoGui extends JFrame{
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setSize(500,200);
-        // this.jtfClave.setText("1");
-        // this.jtxNombre.setText("Programacion");
+        DAOEspecialidad daoEspecialidad=new DAOEspecialidad();
+        List<ModeloEspecialidad> especialidades = daoEspecialidad.consultar();
        // cbxEspecialidad.removeAllItems();
-        //for (ModeloEspecialidad e : DAOEspecialidad.lista){
-          //  cbxEspecialidad.addItem(e.getNombre());
-       // }
+        for (ModeloEspecialidad e : daoEspecialidad.consultar()){
+            cbxEspecialidad.addItem(e);
+        }
         setVisible(true);
     }
+
 }
 //E

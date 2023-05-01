@@ -30,10 +30,7 @@ public class ModeloEspecialidad {
 
     @Override
     public String toString() {
-        return "ModeloEspecialidad{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                '}';
+        return this.nombre;
     }
 }
 //fgdfd

@@ -5,6 +5,7 @@ import dao.DAOEspecialidad;
 import modelo.ModeloAlumno;
 import modelo.ModeloEspecialidad;
 import vista.VistaAlumnoGui;
+import vista.VistaEspecialidadGui;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -27,15 +28,23 @@ public class ControladorAlumnoGui implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent evento) {
+
         DAOAlumno dao=new DAOAlumno();
+        //Object selectedItem = vistaAlumno.cbxEspecialidad.getSelectedItem();
+
+// Verificar si el elemento seleccionado es de tipo "ModeloEspecialidad"
+       // if (selectedItem instanceof ModeloEspecialidad) {
+            // Asignar el objeto seleccionado al atributo "modeloEspecialidad"
+         //   modeloAlumno.setModeloEspecialidad((ModeloEspecialidad) selectedItem);
+        //}
         if (this.vistaAlumno.btnNuevo==evento.getSource()){
             clear();
         }
         else if (vistaAlumno.btnGuardar==evento.getSource()) {
             modeloAlumno.setNumControl(Integer.parseInt(vistaAlumno.jtxNumControl.getText()));
             modeloAlumno.setNombre(vistaAlumno.jtxNombre.getText());
-            //modeloAlumno.getModeloEspecialidad().getNombre();
-            // DAOEspecialidad dao=new DAOEspecialidad();
+            //modeloAlumno.setModeloEspecialidad(vistaAlumno.);
+            modeloAlumno.setModeloEspecialidad((ModeloEspecialidad) vistaAlumno.cbxEspecialidad.getSelectedItem());
             if (dao.agregar(modeloAlumno)){
                 JOptionPane.showMessageDialog(null,
                         "Registro Guardado!",
@@ -57,8 +66,8 @@ public class ControladorAlumnoGui implements ActionListener{
             dao.eliminar(Integer.parseInt(vistaAlumno.jtxNumControl.getText()));
 
             // }
-        } else if (vistaAlumno.btnConsultar==evento.getSource()) {
-            dao.consultar();
+        } else if (vistaAlumno.btnActualizar==evento.getSource()) {
+            //dao.actualizar();
         }
     }
 
