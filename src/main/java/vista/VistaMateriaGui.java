@@ -14,7 +14,7 @@ public class VistaMateriaGui extends JFrame{
     public JButton btnGuardar;
     public JButton btnSalir;
     public JLabel lblID;
-    public JButton btnConsultar;
+
     public JLabel lblNombre;
 
     public VistaMateriaGui(){
