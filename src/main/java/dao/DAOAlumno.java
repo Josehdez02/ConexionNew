@@ -13,30 +13,9 @@ import java.util.List;
 
 public class DAOAlumno implements  DAOGeneral<Integer, ModeloAlumno> {
     private Conexion conexion;
-   // public final static List<ModeloAlumno> lista= new ArrayList<>();
+    public final static List<ModeloAlumno> lista= new ArrayList<>();
     public DAOAlumno(){
         conexion=new Conexion();
-    }
-
-    public boolean agregar2(ModeloAlumno element, ModeloEspecialidad especialidad){
-        if (conexion.abrir()) {
-            String sql = "INSERT INTO Alumno(NumControl, nombre, especialidad) VALUES(?,?,?)";
-            Connection enlace = conexion.obtener();
-            try {
-                PreparedStatement pstm = enlace.prepareStatement(sql);
-                pstm.setInt(1, element.getNumControl());
-                pstm.setString(2, element.getNombre());
-                pstm.setString(3,especialidad.getNombre());
-                pstm.execute();
-                return true;
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null,"ERROR");
-                return false;
-            } finally {
-                conexion.cerrar();
-            }
-        }
-        return false;
     }
 
     @Override
@@ -63,7 +42,7 @@ public class DAOAlumno implements  DAOGeneral<Integer, ModeloAlumno> {
     ConsultarAlumno ca=new ConsultarAlumno();
     @Override
     public List<ModeloAlumno> consultar() {
-         List<ModeloAlumno> lista= new ArrayList<>();
+        // List<ModeloAlumno> lista= new ArrayList<>();
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("NumControl");
         modelo.addColumn("Nombre");
@@ -104,7 +83,7 @@ public class DAOAlumno implements  DAOGeneral<Integer, ModeloAlumno> {
     @Override
     public boolean actualizar(Integer id, ModeloAlumno nuevo) {
         if (conexion.abrir()){
-            String sql="UPDATE especialidad SET nombre=? WHERE NomControl=?";
+            String sql="UPDATE especialidad SET nombre=? WHERE nomControl=?";
             Connection enlace= conexion.obtener();
             try {
                 PreparedStatement stmt = enlace.prepareStatement(sql);
@@ -124,7 +103,7 @@ public class DAOAlumno implements  DAOGeneral<Integer, ModeloAlumno> {
     @Override
     public boolean eliminar(Integer NumControl) {
         if (conexion.abrir()){
-            String sql="DELETE FROM alumno WHERE numControl=?";
+            String sql="DELETE FROM alumno WHERE nomControl=?";
             Connection con= conexion.obtener();
             try {
                 PreparedStatement statement= con.prepareStatement(sql);
@@ -133,6 +112,7 @@ public class DAOAlumno implements  DAOGeneral<Integer, ModeloAlumno> {
                 JOptionPane.showMessageDialog(null,"Se elimino el Alumno con exito");
                 return true;
             }catch (SQLException e){
+                System.out.println("HOLA");
                 throw new RuntimeException(e);
             }finally {
                 conexion.cerrar();
