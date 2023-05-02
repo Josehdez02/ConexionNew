@@ -28,12 +28,49 @@ public class ControladorMateriaGui implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent evento) {
         DAOMateria dao=new DAOMateria();
+        String cadena=vista.txtID.getText();
+        String nomb=vista.txtNombre.getText();
+        int id=0;
+        boolean err=true;
+
+        if (nomb.length()>0&cadena.length()==0){
+            JOptionPane.showMessageDialog(null,
+                    "Faltan Datos",
+                    "AVISO",
+                    JOptionPane.INFORMATION_MESSAGE);
+            err = false;
+        } else if (nomb.length()==0&cadena.length()>0) {
+            JOptionPane.showMessageDialog(null,
+                    "Faltan Datos",
+                    "AVISO",
+                    JOptionPane.INFORMATION_MESSAGE);
+            err = false;
+        }
+        if (cadena.length()==0&nomb.length()==0){
+            JOptionPane.showMessageDialog(null,
+                    "Faltan Datos",
+                    "AVISO",
+                    JOptionPane.INFORMATION_MESSAGE);
+            err = false;
+
+        } else if (cadena.length()>0&nomb.length()>0) {
+            try {
+                id = Integer.parseInt(vista.txtID.getText());
+            } catch (Exception error) {
+                JOptionPane.showMessageDialog(null,
+                        "Se ingreso una letra en el ID",
+                        "AVISO",
+                        JOptionPane.INFORMATION_MESSAGE);
+                err = false;
+            }
+        }
+        if (err==true) {
         if (this.vista.btnNuevo==evento.getSource()){
             clear();
-        }
-        else if (vista.btnGuardar==evento.getSource()) {
-            modelo.setId(Integer.parseInt(vista.txtID.getText()));
-            modelo.setNombre(vista.txtNombre.getText());
+            }
+        } else if (vista.btnGuardar==evento.getSource()) {
+            modelo.setId(id);
+            modelo.setNombre(nomb);
             // DAOMateria dao=new DAOMateria();
             if (dao.agregar(modelo)){
                 JOptionPane.showMessageDialog(null,
