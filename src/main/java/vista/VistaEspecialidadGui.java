@@ -12,7 +12,6 @@ public class VistaEspecialidadGui extends JFrame {
     private JLabel lblLid;
     private JLabel lblNombre;
     public JButton btnNuevo;
-    public JButton btnActualizar;
     public JButton btnEliminar;
     public JButton btnGuardar;
     public JButton btnSalir;
