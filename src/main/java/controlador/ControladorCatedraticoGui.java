@@ -23,14 +23,50 @@ public class ControladorCatedraticoGui implements ActionListener {
         //this.vista.btnConsultar.addActionListener(this);
     }
 
+
     @Override
     public void actionPerformed(ActionEvent evento) {
-        DAOCatedratico dao = new DAOCatedratico();
-        if (this.vista.btnNuevo == evento.getSource()) {
-            clear();
+        DAOCatedratico dao=new DAOCatedratico();
+        String nom = vista.jtxNombre.getText();
+        String rfc = vista.jtxRFC.getText();
+        boolean err = true;
+        if (rfc.length() > 0 & nom.length() > 0) {
+
+        } else if (rfc.length() == 0 & nom.length() == 0) {
+            JOptionPane.showMessageDialog(null,
+                    "Faltan Datos",
+                    "AVISO",
+                    JOptionPane.INFORMATION_MESSAGE);
+            err = false;
+        }
+
+        if (rfc.length() > 0) {
+
+        } else if (rfc.length() == 0 & nom.length() > 0) {
+            JOptionPane.showMessageDialog(null,
+                    "Faltan Datos",
+                    "AVISO",
+                    JOptionPane.INFORMATION_MESSAGE);
+            err = false;
+        }
+        if (nom.length() > 0) {
+
+        } else if (nom.length() == 0 & rfc.length() > 0) {
+            JOptionPane.showMessageDialog(null,
+                    "Faltan Datos",
+                    "AVISO",
+                    JOptionPane.INFORMATION_MESSAGE);
+            err = false;
+        }
+
+        if (err == true) {
+           // DAOCatedratico dao = new DAOCatedratico();
+            if (this.vista.btnNuevo == evento.getSource()) {
+                clear();
+            }
         } else if (vista.btnGuardar == evento.getSource()) {
-            modelo.setRfc(vista.jtxRFC.getText());
-            modelo.setNombre(vista.jtxNombre.getText());
+            modelo.setRfc(rfc);
+            modelo.setNombre(nom);
             // DAOEspecialidad dao=new DAOEspecialidad();
             if (dao.agregar(modelo)) {
                 JOptionPane.showMessageDialog(null,
@@ -51,12 +87,14 @@ public class ControladorCatedraticoGui implements ActionListener {
             Salir();
         } else if (vista.btnEliminar == evento.getSource()) {
             dao.eliminar(vista.jtxRFC.getText());
-        } else if (vista.btnActualizar==evento.getSource()) {
-            ModeloCatedratico nuevo=new ModeloCatedratico();
+        } else if (vista.btnActualizar == evento.getSource()) {
+            ModeloCatedratico nuevo = new ModeloCatedratico();
             nuevo.setNombre(vista.jtxNombre.getText());
-            dao.actualizar(vista.jtxRFC.getText(),nuevo);
+            dao.actualizar(vista.jtxRFC.getText(), nuevo);
         }
     }
+
+
 
     public void clear() {
         this.vista.jtxRFC.setText("");
