@@ -90,6 +90,7 @@ public class ControladorEspecialidadGui implements ActionListener {
                 Salir();
             } else if (vista.btnEliminar == evento.getSource()) {
                 dao.eliminar(Integer.parseInt(vista.jtxId.getText()));
+                dao.eliminar(Integer.valueOf(vista.jtxNombre.getText()));
 
             } else if (vista.btnActualizar == evento.getSource()) {
                 ModeloEspecialidad nuevo = new ModeloEspecialidad();

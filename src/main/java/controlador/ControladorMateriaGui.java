@@ -67,25 +67,26 @@ public class ControladorMateriaGui implements ActionListener {
         if (err==true) {
         if (this.vista.btnNuevo==evento.getSource()){
             clear();
-            }
+
         } else if (vista.btnGuardar==evento.getSource()) {
             modelo.setId(id);
             modelo.setNombre(nomb);
             // DAOMateria dao=new DAOMateria();
-            if (dao.agregar(modelo)){
+            if (dao.agregar(modelo)) {
                 JOptionPane.showMessageDialog(null,
                         "Registro Guardado!",
                         "Aviso",
                         JOptionPane.INFORMATION_MESSAGE
                 );
-            }else {
+            } else {
                 JOptionPane.showMessageDialog(null,
                         "Ups! Fallo al intentar agregar Materia.\n"
-                                +"Intente nuevamente",
+                                + "Intente nuevamente",
                         "Aviso",
                         JOptionPane.ERROR_MESSAGE
                 );
             }
+        }
             clear();
         } else if (vista.btnSalir==evento.getSource()) {
             Salir();
