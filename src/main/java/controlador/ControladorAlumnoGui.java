@@ -54,11 +54,11 @@ public class ControladorAlumnoGui implements ActionListener{
             Salir();
         } if (vistaAlumno.btnEliminar==evento.getSource()) {
             dao.eliminar(Integer.parseInt(vistaAlumno.jtxNumControl.getText()));
-        } else if (vistaAlumno.btnActualizar==evento.getSource()) {
+        }/* else if (vistaAlumno.btnActualizar==evento.getSource()) {
             ModeloAlumno nuevo=new ModeloAlumno();
             nuevo.setNombre(vistaAlumno.jtxNombre.getText());
             dao.actualizar(Integer.valueOf(vistaAlumno.jtxNumControl.getText()),nuevo);
-        }
+        }*/
     }
 
     public void clear(){

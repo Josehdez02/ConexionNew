@@ -93,11 +93,11 @@ public class ControladorMateriaGui implements ActionListener {
         } else if (vista.btnEliminar==evento.getSource()) {
             dao.eliminar(Integer.parseInt(vista.txtID.getText()));
 
-        } else if (vista.btnConsultar==evento.getSource()) {
+        } /*else if (vista.btnConsultar==evento.getSource()) {
             ModeloMateria nuevo=new ModeloMateria();
             nuevo.setNombre(vista.txtNombre.getText());
             dao.actualizar(Integer.parseInt(vista.txtID.getText()),nuevo);
-        }
+        }*/
     }
 
     public void clear(){
