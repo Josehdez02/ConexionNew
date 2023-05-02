@@ -30,24 +30,26 @@ public class ControladorVistaPrincipal implements ActionListener {
         if (e.getSource() == vistaPrincipal.btnConsultar) {
             String opcion = vistaPrincipal.cmbxOpciones.getSelectedItem().toString();
             if (opcion.equals("Alta Especialidad")) {
-                ConsultarEspecialidad c1=new ConsultarEspecialidad();
-                c1.consultar();
+                ConsultarEspecialidad ce=new ConsultarEspecialidad();
+                ce.mostrarVentana();
+
             }
             if (opcion.equals("Alta Catedratico")) {
-                DAOCatedratico dc=new DAOCatedratico();
-                dc.consultar();
+                ConsultarCatedratico cc=new ConsultarCatedratico();
+                cc.mostrarVentana();
+
             }
             if (opcion.equals("Alta Alumno")) {
-                DAOAlumno d4 = new DAOAlumno();
-                d4.consultar();
+                ConsultarAlumno ca=new ConsultarAlumno();
+                ca.mostrarVentana();
             }
             if (opcion.equals("Alta Materia")) {
-                DAOMateria d4 = new DAOMateria();
-                d4.consultar();
+                ConsultarMateria cm=new ConsultarMateria();
+                cm.mostrarVentana();
             }
             if (opcion.equals("Alta Grupo")) {
-                ConsultarGrupo c1 = new ConsultarGrupo();
-                c1.consultar();
+                ConsultarGrupo cg=new ConsultarGrupo();
+                cg.mostrarVentana();
             }
             
         }else {
@@ -63,11 +65,11 @@ public class ControladorVistaPrincipal implements ActionListener {
                 } else if (opcion.equals("Alta Materia")) {
                     VistaMateriaGui vm = new VistaMateriaGui();
                     ModeloMateria mm = new ModeloMateria();
-                    ControladorMateriaGui ce = new ControladorMateriaGui(mm, vm);
+                    ControladorMateriaGui cm = new ControladorMateriaGui(mm, vm);
                 } else if (opcion.equals("Alta Catedratico")) {
                     VistaCatedraticoGui vc = new VistaCatedraticoGui();
                     ModeloCatedratico mc = new ModeloCatedratico();
-                    ControladorCatedraticoGui ce = new ControladorCatedraticoGui(mc, vc);
+                    ControladorCatedraticoGui cc = new ControladorCatedraticoGui(mc, vc);
                 }else if (opcion.equals("Alta Grupo")) {
                 VistaGrupoGui vg = new VistaGrupoGui();
                 ModeloGrupo mg = new ModeloGrupo();

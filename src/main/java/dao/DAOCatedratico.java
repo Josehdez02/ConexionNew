@@ -39,12 +39,13 @@ public class DAOCatedratico implements  DAOGeneral<String, ModeloCatedratico> {
         }
         return false;
     }
+    ConsultarCatedratico c1 = new ConsultarCatedratico();
     @Override
     public List<ModeloCatedratico> consultar() {
         List<ModeloCatedratico> lista= new ArrayList<>();
-        //DefaultTableModel modelo = new DefaultTableModel();
-        //modelo.addColumn("RFC");
-        //modelo.addColumn("Nombre");
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("RFC");
+        modelo.addColumn("Nombre");
         if (conexion.abrir()){
             String sql = "SELECT * FROM catedratico";
             Connection enlace= conexion.obtener();
@@ -56,11 +57,11 @@ public class DAOCatedratico implements  DAOGeneral<String, ModeloCatedratico> {
                     catedratico.setRfc(resultados.getString("rfc"));
                     catedratico.setNombre(resultados.getString("nombre"));
                     lista.add(catedratico);
-                    //Object[] fila = {catedratico.getRFC(), catedratico.getNombre()};
-                    //modelo.addRow(fila);
+                    Object[] fila = {catedratico.getRfc(), catedratico.getNombre()};
+                    modelo.addRow(fila);
                 }
                 //ConsultarCatedratico c1 = new ConsultarCatedratico();
-                //c1.tableCatedratico.setModel(modelo);
+                c1.tableCatedratico.setModel(modelo);
             }catch (SQLException e){
                 //throw new RuntimeException(e);
                 JOptionPane.showMessageDialog(null,

@@ -30,12 +30,67 @@ public class ControladorGrupoGui implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent evento) {
         DAOGrupo dao = new DAOGrupo();
+        String hora=vistaGrupo.jtxtHora.getText();
+        String clavecad=vistaGrupo.jtxtClave.getText();
+        String saloncad=vistaGrupo.jtxtSalon.getText();
+        boolean err=true;
+        int clave=0;
+        int salon=0;
+
+        if (hora.length()>0&clavecad.length()>0&saloncad.length()>0) {
+            try {
+                salon = Integer.parseInt(vistaGrupo.jtxtSalon.getText());
+            } catch (Exception error) {
+                JOptionPane.showMessageDialog(null,
+                        "Se ingreso una letra en el salon",
+                        "AVISO",
+                        JOptionPane.INFORMATION_MESSAGE);
+                err = false;
+            }
+        } else if (hora.length()>0&clavecad.length()>0&saloncad.length()==0) {
+            JOptionPane.showMessageDialog(null,
+                    "Faltan Datos",
+                    "AVISO",
+                    JOptionPane.INFORMATION_MESSAGE);
+            err=false;
+        } else if (hora.length()>0&clavecad.length()==0&saloncad.length()>0) {
+            JOptionPane.showMessageDialog(null,
+                    "Faltan Datos",
+                    "AVISO",
+                    JOptionPane.INFORMATION_MESSAGE);
+            err=false;
+        } else if (hora.length()==0&clavecad.length()==0&saloncad.length()==0) {
+            JOptionPane.showMessageDialog(null,
+                    "Faltan Datos",
+                    "AVISO",
+                    JOptionPane.INFORMATION_MESSAGE);
+            err=false;
+        }
+        if (hora.length()>0&clavecad.length()>0&saloncad.length()>0){
+            try {
+                clave=Integer.parseInt(vistaGrupo.jtxtClave.getText());
+            }catch (Exception error){
+                JOptionPane.showMessageDialog(null,
+                        "Se ingreso una letra en la clave",
+                        "AVISO",
+                        JOptionPane.INFORMATION_MESSAGE);
+                err=false;
+            }
+        } else if (hora.length()==0&clavecad.length()>0&saloncad.length()>0) {
+            JOptionPane.showMessageDialog(null,
+                    "Faltan Datos",
+                    "AVISO",
+                    JOptionPane.INFORMATION_MESSAGE);
+            err=false;
+        }
+
+        if (err==true) {
         if (this.vistaGrupo.btnNuevo == evento.getSource()) {
             clear();
         } else if (vistaGrupo.btnGuardar == evento.getSource()) {
-            modeloGrupo.setClave(Integer.parseInt(vistaGrupo.jtxtClave.getText()));
-            modeloGrupo.setHora(vistaGrupo.jtxtHora.getText());
-            modeloGrupo.setSalon(Integer.parseInt(vistaGrupo.jtxtSalon.getText()));
+            modeloGrupo.setClave(clave);
+            modeloGrupo.setHora(hora);
+            modeloGrupo.setSalon(salon);
             modeloGrupo.setModeloCatedratico((ModeloCatedratico) vistaGrupo.cbxCatedratico.getSelectedItem());
             modeloGrupo.setModeloAlumno((ModeloAlumno)vistaGrupo.cbxAlumno.getSelectedItem());
             modeloGrupo.setModeloMateria((ModeloMateria)vistaGrupo.cbxMateria.getSelectedItem());
@@ -52,6 +107,7 @@ public class ControladorGrupoGui implements ActionListener {
                         JOptionPane.ERROR_MESSAGE
                 );
             }
+        }
             clear();
         }else if (vistaGrupo.btnSalir==evento.getSource()){
             Salir();

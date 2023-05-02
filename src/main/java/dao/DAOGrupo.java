@@ -45,6 +45,7 @@ public class DAOGrupo {
         return false;
     }
 
+    ConsultarGrupo cg=new ConsultarGrupo();
     public List<ModeloGrupo> consultar() {
         List<ModeloGrupo> lista = new ArrayList<>();
         DefaultTableModel modelo = new DefaultTableModel();
@@ -55,15 +56,14 @@ public class DAOGrupo {
         modelo.addColumn("Alumno");
         modelo.addColumn("Materia");
         if (conexion.abrir()) {
-            String sql = "Select * from grupo";
-                    /*"select grupo.clave, grupo.hora, grupo.salon," +
-                         "catedratico.nombre as catedratico, " +
-                         "alumno.nombre as alumno, " +
-                         "materia.nombre as materia " +
-                         "from grupo, catedratico, alumno, materia " +
-                         "where grupo.catedratico = catedratico.rfc " +
-                         "and grupo.alumno = alumno.nomControl " +
-                         "and grupo.materia = materia.id;";*/
+            String sql ="select grupo.clave, grupo.hora, grupo.salon, " +
+                    "catedratico.nombre as catedratico," +
+                    "alumno.nombre as alumno," +
+                    "materia.nombre as materia " +
+                    "from grupo, catedratico, alumno, materia " +
+                    "where grupo.catedratico = catedratico.rfc " +
+                    "and grupo.alumno = alumno.nomControl " +
+                    "and grupo.materia = materia.id;";
             Connection enlace = conexion.obtener();
             try {
                 Statement stnt = enlace.createStatement();
@@ -76,16 +76,21 @@ public class DAOGrupo {
                     grupo.setModeloCatedratico(new ModeloCatedratico(
                             resultados.getString("rfc"),
                             resultados.getString("catedratico")));
-                    grupo.setModeloAlumno(new ModeloAlumno());
-                    grupo.setModeloMateria(new ModeloMateria());
+                    grupo.setModeloAlumno(new ModeloAlumno(
+                            resultados.getInt("nocontrol"),
+                            resultados.getString("alumno")
+                    ));
+                    grupo.setModeloMateria(new ModeloMateria(
+                            resultados.getInt("id"),
+                            resultados.getString("materia")
+                    ));
                     lista.add(grupo);
                     Object[] fila = {grupo.getClave(), grupo.getHora(),
                             grupo.getSalon(), grupo.getModeloCatedratico(),
                             grupo.getModeloAlumno(), grupo.getModeloMateria()};
                     modelo.addRow(fila);
                 }
-                ConsultarGrupo c1 = new ConsultarGrupo();
-                c1.tableGrupo.setModel(modelo);
+                cg.tableGrupo.setModel(modelo);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } finally {

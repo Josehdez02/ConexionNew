@@ -41,7 +41,7 @@ public class DAOMateria implements DAOGeneral<Integer, ModeloMateria> {
         return result;
     }
 
-
+    ConsultarMateria c1 = new ConsultarMateria();
 
     @Override
     public List<ModeloMateria> consultar() {
@@ -63,7 +63,7 @@ public class DAOMateria implements DAOGeneral<Integer, ModeloMateria> {
                     Object[] fila = {materia.getId(), materia.getNombre()};
                     modelo.addRow(fila);
                 }
-                ConsultarMateria c1 = new ConsultarMateria();
+                //ConsultarMateria c1 = new ConsultarMateria();
                 c1.tableMateria.setModel(modelo);
             }catch (SQLException e){
                 //throw new RuntimeException(e);

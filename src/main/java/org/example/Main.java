@@ -18,4 +18,3 @@ public class Main {
         ControladorVistaPrincipal c1=new ControladorVistaPrincipal(v1);
     }
 }
-//cvc
