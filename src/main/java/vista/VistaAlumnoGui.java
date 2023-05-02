@@ -31,7 +31,7 @@ public class VistaAlumnoGui extends JFrame{
         setContentPane(panelPrincipal);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        setSize(600,150);
+        setSize(500,170);
         DAOEspecialidad daoEspecialidad=new DAOEspecialidad();
         List<ModeloEspecialidad> especialidades = daoEspecialidad.consultar();
        // cbxEspecialidad.removeAllItems();
