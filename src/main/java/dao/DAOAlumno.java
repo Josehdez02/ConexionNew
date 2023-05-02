@@ -42,7 +42,7 @@ public class DAOAlumno implements  DAOGeneral<Integer, ModeloAlumno> {
     ConsultarAlumno ca=new ConsultarAlumno();
     @Override
     public List<ModeloAlumno> consultar() {
-        // List<ModeloAlumno> lista= new ArrayList<>();
+
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("NumControl");
         modelo.addColumn("Nombre");

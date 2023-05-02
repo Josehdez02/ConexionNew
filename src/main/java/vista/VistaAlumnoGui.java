@@ -22,7 +22,6 @@ public class VistaAlumnoGui extends JFrame{
     private JPanel panelCentro;
     private JLabel lblNombre;
     private JPanel panelSur;
-    public JButton btnActualizar;
     public JComboBox cbxEspecialidad;
     //public final static ArrayList<ModeloEspecialidad>esepecialida=new ArrayList<>();
 
@@ -31,7 +30,7 @@ public class VistaAlumnoGui extends JFrame{
         setContentPane(panelPrincipal);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        setSize(600,150);
+        setSize(500,170);
         DAOEspecialidad daoEspecialidad=new DAOEspecialidad();
         List<ModeloEspecialidad> especialidades = daoEspecialidad.consultar();
        // cbxEspecialidad.removeAllItems();

@@ -63,7 +63,7 @@ public class ControladorCatedraticoGui implements ActionListener {
            // DAOCatedratico dao = new DAOCatedratico();
             if (this.vista.btnNuevo == evento.getSource()) {
                 clear();
-            }
+
         } else if (vista.btnGuardar == evento.getSource()) {
             modelo.setRfc(rfc);
             modelo.setNombre(nom);
@@ -82,7 +82,7 @@ public class ControladorCatedraticoGui implements ActionListener {
                         JOptionPane.ERROR_MESSAGE
                 );
             }
-            clear();
+            clear();}
         } else if (vista.btnSalir == evento.getSource()) {
             Salir();
         } else if (vista.btnEliminar == evento.getSource()) {
