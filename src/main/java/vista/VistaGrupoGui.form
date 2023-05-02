@@ -58,7 +58,7 @@
           <component id="84d07" class="javax.swing.JLabel" binding="lblCatedratico">
             <constraints/>
             <properties>
-              <text value="Catedratico:"/>
+              <text value="          Catedratico:"/>
             </properties>
           </component>
           <component id="1d362" class="javax.swing.JComboBox" binding="cbxCatedratico">
@@ -68,7 +68,7 @@
           <component id="22a9d" class="javax.swing.JLabel" binding="lblAlumno">
             <constraints/>
             <properties>
-              <text value="Alumno:"/>
+              <text value="         Alumno:"/>
             </properties>
           </component>
           <component id="76c18" class="javax.swing.JComboBox" binding="cbxAlumno">
@@ -78,7 +78,7 @@
           <component id="ed068" class="javax.swing.JLabel" binding="lblMateria">
             <constraints/>
             <properties>
-              <text value="Materia:"/>
+              <text value="               Materia:"/>
             </properties>
           </component>
           <component id="1813e" class="javax.swing.JComboBox" binding="cbxMateria">

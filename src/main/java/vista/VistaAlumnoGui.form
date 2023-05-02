@@ -46,7 +46,7 @@
           <component id="fc636" class="javax.swing.JLabel" binding="lblEspecialidad">
             <constraints/>
             <properties>
-              <text value="           Especialidad:"/>
+              <text value="                                         Especialidad:"/>
             </properties>
           </component>
           <component id="edd28" class="javax.swing.JComboBox" binding="cbxEspecialidad">

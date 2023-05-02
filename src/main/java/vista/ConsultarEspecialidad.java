@@ -20,8 +20,6 @@ public class ConsultarEspecialidad extends JFrame{
         setContentPane(panelPrincipal);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(500, 500);
-        setVisible(true);
-
     }
 
     Conexion conexion=new Conexion();
@@ -60,5 +58,9 @@ public class ConsultarEspecialidad extends JFrame{
         }
         return lista.stream().toList();
     }
+    public void mostrarVentana() {
+        consultar();
+        setVisible(true);
+    }
 }
-//fgfd
+

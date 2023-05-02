@@ -24,11 +24,9 @@ public class ConsultarGrupo extends JFrame {
         setContentPane(panelPrincipal);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(500, 500);
-
-        setVisible(true);
     }
-        Conexion conexion=new Conexion();
     public List<ModeloGrupo> consultar() {
+        Conexion conexion=new Conexion();
         List<ModeloGrupo> lista = new ArrayList<>();
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Clave");
@@ -38,9 +36,9 @@ public class ConsultarGrupo extends JFrame {
         modelo.addColumn("Alumno");
         modelo.addColumn("Materia");
         if (conexion.abrir()) {
-            String sql = "select grupo.clave, grupo.hora, grupo.salon," +
-                    "catedratico.nombre as catedratico, " +
-                    "alumno.nombre as alumno, " +
+            String sql ="select grupo.clave, grupo.hora, grupo.salon, " +
+                    "catedratico.nombre as catedratico," +
+                    "alumno.nombre as alumno," +
                     "materia.nombre as materia " +
                     "from grupo, catedratico, alumno, materia " +
                     "where grupo.catedratico = catedratico.rfc " +
@@ -58,8 +56,14 @@ public class ConsultarGrupo extends JFrame {
                     grupo.setModeloCatedratico(new ModeloCatedratico(
                             resultados.getString("rfc"),
                             resultados.getString("catedratico")));
-                    grupo.setModeloAlumno(new ModeloAlumno());
-                    grupo.setModeloMateria(new ModeloMateria());
+                    grupo.setModeloAlumno(new ModeloAlumno(
+                            resultados.getInt("nocontrol"),
+                            resultados.getString("alumno")
+                    ));
+                    grupo.setModeloMateria(new ModeloMateria(
+                            resultados.getInt("id"),
+                            resultados.getString("materia")
+                    ));
                     lista.add(grupo);
                     Object[] fila = {grupo.getClave(), grupo.getHora(),
                             grupo.getSalon(), grupo.getModeloCatedratico(),
@@ -74,5 +78,9 @@ public class ConsultarGrupo extends JFrame {
             }
         }
         return lista.stream().toList();
+    }
+    public void mostrarVentana() {
+        consultar();
+        setVisible(true);
     }
 }

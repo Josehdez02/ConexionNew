@@ -8,6 +8,10 @@ public class ModeloAlumno {
     public ModeloAlumno() {
     }
 
+    public ModeloAlumno(int numControl, String nombre) {
+        this.numControl = numControl;
+        this.nombre = nombre;
+    }
 
     public ModeloAlumno(int numControl, String nombre, ModeloEspecialidad modeloEspecialidad) {
         this.numControl = numControl;

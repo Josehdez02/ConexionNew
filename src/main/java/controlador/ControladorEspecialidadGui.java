@@ -24,41 +24,79 @@ public class ControladorEspecialidadGui implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent evento) {
-        DAOEspecialidad dao=new DAOEspecialidad();
-        if (this.vista.btnNuevo==evento.getSource()){
-            clear();
+        DAOEspecialidad dao = new DAOEspecialidad();
+        String cadena = vista.jtxId.getText();
+        String nomb = vista.jtxNombre.getText();
+        int id = 0;
+        boolean err = true;
+
+        if (nomb.length() > 0 & cadena.length() == 0) {
+            JOptionPane.showMessageDialog(null,
+                    "Faltan Datos",
+                    "AVISO",
+                    JOptionPane.INFORMATION_MESSAGE);
+            err = false;
+        } else if (nomb.length() == 0 & cadena.length() > 0) {
+            JOptionPane.showMessageDialog(null,
+                    "Faltan Datos",
+                    "AVISO",
+                    JOptionPane.INFORMATION_MESSAGE);
+            err = false;
         }
-        else if (vista.btnGuardar==evento.getSource()) {
-            modelo.setId(Integer.parseInt(vista.jtxId.getText()));
-            modelo.setNombre(vista.jtxNombre.getText());
-            // DAOEspecialidad dao=new DAOEspecialidad();
-            if (dao.agregar(modelo)){
+        if (cadena.length() == 0 & nomb.length() == 0) {
+            JOptionPane.showMessageDialog(null,
+                    "Faltan Datos",
+                    "AVISO",
+                    JOptionPane.INFORMATION_MESSAGE);
+            err = false;
+
+        } else if (cadena.length() > 0 & nomb.length() > 0) {
+            try {
+                id = Integer.parseInt(vista.jtxId.getText());
+            } catch (Exception error) {
                 JOptionPane.showMessageDialog(null,
-                        "Registro Guardado!",
-                        "Aviso",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
-            }else {
-                JOptionPane.showMessageDialog(null,
-                        "Ups! Fallo al intentar agregar Especialidad.\n"
-                                +"Intente nuevamente",
-                        "Aviso",
-                        JOptionPane.ERROR_MESSAGE
-                );
+                        "Se ingreso una letra en el ID",
+                        "AVISO",
+                        JOptionPane.INFORMATION_MESSAGE);
+                err = false;
             }
-            clear();
-        } else if (vista.btnSalir==evento.getSource()) {
-            Salir();
-        } else if (vista.btnEliminar==evento.getSource()) {
-            dao.eliminar(Integer.parseInt(vista.jtxId.getText()));
-
-        } else if (vista.btnActualizar==evento.getSource()) {
-            ModeloEspecialidad nuevo=new ModeloEspecialidad();
-            nuevo.setNombre(vista.jtxNombre.getText());
-            dao.actualizar(Integer.parseInt(vista.jtxId.getText()),nuevo);
         }
-    }
 
+            if (this.vista.btnNuevo == evento.getSource()) {
+                clear();
+            }
+        if (err == true) {
+            if (vista.btnGuardar == evento.getSource()) {
+                modelo.setId(Integer.parseInt(cadena));
+                modelo.setNombre(nomb);
+                // DAOEspecialidad dao=new DAOEspecialidad();
+                if (dao.agregar(modelo)) {
+                    JOptionPane.showMessageDialog(null,
+                            "Registro Guardado!",
+                            "Aviso",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "Ups! Fallo al intentar agregar Especialidad.\n"
+                                    + "Intente nuevamente",
+                            "Aviso",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                }
+            }
+                clear();
+            } else if (vista.btnSalir == evento.getSource()) {
+                Salir();
+            } else if (vista.btnEliminar == evento.getSource()) {
+                dao.eliminar(Integer.parseInt(vista.jtxId.getText()));
+
+            } else if (vista.btnActualizar == evento.getSource()) {
+                ModeloEspecialidad nuevo = new ModeloEspecialidad();
+                nuevo.setNombre(vista.jtxNombre.getText());
+                dao.actualizar(Integer.parseInt(vista.jtxId.getText()), nuevo);
+            }
+    }
     public void clear(){
         this.vista.jtxId.setText("");
         this.vista.jtxNombre.setText("");

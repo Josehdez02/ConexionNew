@@ -38,12 +38,13 @@ public class DAOEspecialidad implements  DAOGeneral<Integer, ModeloEspecialidad>
         }
         return false;
     }
+    //ConsultarEspecialidad c1 = new ConsultarEspecialidad();
     @Override
     public List<ModeloEspecialidad> consultar() {
         List<ModeloEspecialidad> lista= new ArrayList<>();
-       // DefaultTableModel modelo = new DefaultTableModel();
+      //  DefaultTableModel modelo = new DefaultTableModel();
        // modelo.addColumn("ID");
-       // modelo.addColumn("Nombre");
+        //modelo.addColumn("Nombre");
         if (conexion.abrir()){
             String sql = "SELECT * FROM especialidad";
             Connection enlace= conexion.obtener();
@@ -55,11 +56,11 @@ public class DAOEspecialidad implements  DAOGeneral<Integer, ModeloEspecialidad>
                     especialidad.setId(resultados.getInt("id"));
                     especialidad.setNombre(resultados.getString("nombre"));
                     lista.add(especialidad);
-         //           Object[] fila = {especialidad.getId(), especialidad.getNombre()};
-         //           modelo.addRow(fila);
+               //     Object[] fila = {especialidad.getId(), especialidad.getNombre()};
+             //       modelo.addRow(fila);
                 }
-             //   ConsultarEspecialidad c1 = new ConsultarEspecialidad();
-           //     c1.tableEspecialidad.setModel(modelo);
+               // ConsultarEspecialidad c1 = new ConsultarEspecialidad();
+                //c1.tableEspecialidad.setModel(modelo);
 
             }catch (SQLException e){
                 //throw new RuntimeException(e);

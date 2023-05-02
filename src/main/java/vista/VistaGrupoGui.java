@@ -32,19 +32,18 @@ public class VistaGrupoGui extends JFrame {
     public JComboBox cbxAlumno;
     private JLabel lblMateria;
     public JComboBox cbxMateria;
-
+    DAOCatedratico daoCatedratico=new DAOCatedratico();
+    List<ModeloCatedratico> catedraticos = daoCatedratico.consultar();
+    DAOAlumno daoAlumno=new DAOAlumno();
+    List<ModeloAlumno> alumnos = daoAlumno.consultar();
+    DAOMateria daoMateria=new DAOMateria();
+    List<ModeloMateria> materias = daoMateria.consultar();
     public VistaGrupoGui(){
         super("Ventana Grupo");
         setContentPane(panelPrincipal);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        setSize(600,150);
-        DAOCatedratico daoCatedratico=new DAOCatedratico();
-        List<ModeloCatedratico> catedraticos = daoCatedratico.consultar();
-        DAOAlumno daoAlumno=new DAOAlumno();
-        List<ModeloAlumno> alumnos = daoAlumno.consultar();
-        DAOMateria daoMateria=new DAOMateria();
-        List<ModeloMateria> materias = daoMateria.consultar();
+        setSize(600,200);
         for (ModeloCatedratico e : daoCatedratico.consultar()){
             cbxCatedratico.addItem(e);
         }
@@ -55,5 +54,8 @@ public class VistaGrupoGui extends JFrame {
             cbxMateria.addItem(e);
         }
         setVisible(true);
+
     }
+
+
 }

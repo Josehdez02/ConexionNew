@@ -60,6 +60,7 @@ public class DAOAlumno implements  DAOGeneral<Integer, ModeloAlumno> {
         }
         return false;
     }
+    ConsultarAlumno ca=new ConsultarAlumno();
     @Override
     public List<ModeloAlumno> consultar() {
          List<ModeloAlumno> lista= new ArrayList<>();
@@ -89,7 +90,7 @@ public class DAOAlumno implements  DAOGeneral<Integer, ModeloAlumno> {
                     Object[] fila = {Alumno.getNumControl(), Alumno.getNombre(), Alumno.getModeloEspecialidad()};
                     modelo.addRow(fila);
                 }
-                ConsultarAlumno ca=new ConsultarAlumno();
+                //ConsultarAlumno ca=new ConsultarAlumno();
                 ca.tableAlumno.setModel(modelo);
             }catch (SQLException e){
                 throw new RuntimeException(e);
