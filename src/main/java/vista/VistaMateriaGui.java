@@ -7,7 +7,7 @@ public class VistaMateriaGui extends JFrame{
     private JPanel PanelNorte;
     private JPanel PanelSur;
     private JPanel PanelCentro;
-    public JTextField txtID;
+    public  JTextField txtID;
     public JTextField txtNombre;
     public JButton btnNuevo;
     public JButton btnEliminar;
@@ -16,7 +16,6 @@ public class VistaMateriaGui extends JFrame{
     public JLabel lblID;
     public JButton btnConsultar;
     public JLabel lblNombre;
-    private JButton btnActualizar;
 
     public VistaMateriaGui(){
         super("Ventana Materia");

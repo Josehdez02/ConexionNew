@@ -38,12 +38,6 @@
               <text value="Nuevo"/>
             </properties>
           </component>
-          <component id="842aa" class="javax.swing.JButton" binding="btnActualizar">
-            <constraints/>
-            <properties>
-              <text value="Actualizar"/>
-            </properties>
-          </component>
           <component id="68eb3" class="javax.swing.JButton" binding="btnEliminar">
             <constraints/>
             <properties>
