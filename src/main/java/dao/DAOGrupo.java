@@ -55,14 +55,15 @@ public class DAOGrupo {
         modelo.addColumn("Alumno");
         modelo.addColumn("Materia");
         if (conexion.abrir()) {
-            String sql = "select grupo.clave, grupo.hora, grupo.salon," +
+            String sql = "Select * from grupo";
+                    /*"select grupo.clave, grupo.hora, grupo.salon," +
                          "catedratico.nombre as catedratico, " +
                          "alumno.nombre as alumno, " +
                          "materia.nombre as materia " +
                          "from grupo, catedratico, alumno, materia " +
                          "where grupo.catedratico = catedratico.rfc " +
                          "and grupo.alumno = alumno.nomControl " +
-                         "and grupo.materia = materia.id;";
+                         "and grupo.materia = materia.id;";*/
             Connection enlace = conexion.obtener();
             try {
                 Statement stnt = enlace.createStatement();

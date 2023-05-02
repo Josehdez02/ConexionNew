@@ -34,8 +34,8 @@ public class ControladorVistaPrincipal implements ActionListener {
                 c1.consultar();
             }
             if (opcion.equals("Alta Catedratico")) {
-                ConsultarCatedratico c2=new ConsultarCatedratico();
-                c2.consultar();
+                DAOCatedratico dc=new DAOCatedratico();
+                dc.consultar();
             }
             if (opcion.equals("Alta Alumno")) {
                 DAOAlumno d4 = new DAOAlumno();
@@ -46,8 +46,8 @@ public class ControladorVistaPrincipal implements ActionListener {
                 d4.consultar();
             }
             if (opcion.equals("Alta Grupo")) {
-                DAOGrupo d1 = new DAOGrupo();
-                d1.consultar();
+                ConsultarGrupo c1 = new ConsultarGrupo();
+                c1.consultar();
             }
             
         }else {
