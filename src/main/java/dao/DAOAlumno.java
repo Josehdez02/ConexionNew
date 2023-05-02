@@ -13,7 +13,7 @@ import java.util.List;
 
 public class DAOAlumno implements  DAOGeneral<Integer, ModeloAlumno> {
     private Conexion conexion;
-   // public final static List<ModeloAlumno> lista= new ArrayList<>();
+    public final static List<ModeloAlumno> lista= new ArrayList<>();
     public DAOAlumno(){
         conexion=new Conexion();
     }
@@ -63,7 +63,6 @@ public class DAOAlumno implements  DAOGeneral<Integer, ModeloAlumno> {
     ConsultarAlumno ca=new ConsultarAlumno();
     @Override
     public List<ModeloAlumno> consultar() {
-         List<ModeloAlumno> lista= new ArrayList<>();
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("NumControl");
         modelo.addColumn("Nombre");
@@ -124,7 +123,7 @@ public class DAOAlumno implements  DAOGeneral<Integer, ModeloAlumno> {
     @Override
     public boolean eliminar(Integer NumControl) {
         if (conexion.abrir()){
-            String sql="DELETE FROM alumno WHERE numControl=?";
+            String sql="DELETE FROM alumno WHERE nomControl=?";
             Connection con= conexion.obtener();
             try {
                 PreparedStatement statement= con.prepareStatement(sql);
