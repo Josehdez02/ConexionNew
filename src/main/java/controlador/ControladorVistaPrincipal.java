@@ -1,7 +1,6 @@
 package controlador;
 
 import dao.DAOCatedratico;
-import dao.DAOEspecialidad;
 import dao.DAOAlumno;
 import dao.DAOEspecialidad;
 import dao.DAOMateria;
@@ -11,12 +10,7 @@ import modelo.ModeloEspecialidad;
 import modelo.ModeloAlumno;
 import modelo.ModeloMateria;
 import modelo.ModeloGrupo;
-import vista.VistaAlumnoGui;
-import vista.VistaCatedraticoGui;
-import vista.VistaEspecialidadGui;
-import vista.VistaMateriaGui;
-import vista.VistaPrincipal;
-import vista.VistaGrupoGui;
+import vista.*;
 
 
 import java.awt.event.ActionEvent;
@@ -40,13 +34,12 @@ public class ControladorVistaPrincipal implements ActionListener {
                 c1.consultar();
             }
             if (opcion.equals("Alta Catedratico")) {
-                DAOCatedratico d2 = new DAOCatedratico();
-                d2.consultar();
+                ConsultarCatedratico c2=new ConsultarCatedratico();
+                c2.consultar();
             }
             if (opcion.equals("Alta Alumno")) {
-
-                DAOAlumno d2 = new DAOAlumno();
-                d2.consultar();
+                DAOAlumno d4 = new DAOAlumno();
+                d4.consultar();
             }
             if (opcion.equals("Alta Materia")) {
                 DAOMateria d4 = new DAOMateria();

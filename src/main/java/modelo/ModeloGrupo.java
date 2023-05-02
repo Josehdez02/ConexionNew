@@ -1,16 +1,24 @@
 package modelo;
 
-
 public class ModeloGrupo {
-    public String hora;
-    public int clave, salon;
+    private String hora;
+    private int clave, salon;
+    private ModeloCatedratico modeloCatedratico;
+    private ModeloAlumno modeloAlumno;
+    private ModeloMateria modeloMateria;
     public ModeloGrupo() {
     }
 
-    public ModeloGrupo(int clave, String hora, int salon) {
+    public ModeloGrupo(int clave, String hora, int salon,
+                       ModeloCatedratico modeloCatedratico,
+                       ModeloAlumno modeloAlumno,
+                       ModeloMateria modeloMateria) {
         this.clave = clave;
         this.hora = hora;
         this.salon = salon;
+        this.modeloCatedratico = modeloCatedratico;
+        this.modeloAlumno = modeloAlumno;
+        this.modeloMateria = modeloMateria;
     }
 
     public int getClave() {
@@ -37,6 +45,28 @@ public class ModeloGrupo {
         this.salon = salon;
     }
 
+    public ModeloCatedratico getModeloCatedratico() {
+        return modeloCatedratico;
+    }
+
+    public void setModeloCatedratico(ModeloCatedratico modeloCatedratico) {
+        this.modeloCatedratico = modeloCatedratico;
+    }
+    public ModeloAlumno getModeloAlumno() {
+        return modeloAlumno;
+    }
+
+    public void setModeloAlumno(ModeloAlumno modeloAlumno) {
+        this.modeloAlumno = modeloAlumno;
+    }
+
+    public ModeloMateria getModeloMateria() {
+        return modeloMateria;
+    }
+
+    public void setModeloMateria(ModeloMateria modeloMateria) {
+        this.modeloMateria = modeloMateria;
+    }
 
     @Override
     public String toString() {
@@ -45,6 +75,10 @@ public class ModeloGrupo {
                 ", Hora=" + hora +
                 ", Salon=" + salon +
                 '}';
+    }
+
+    public void imprmir() {
+        System.out.println(toString());
     }
 
     }

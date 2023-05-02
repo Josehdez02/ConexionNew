@@ -7,6 +7,7 @@ import vista.ConsultarCatedratico;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class DAOCatedratico implements  DAOGeneral<String, ModeloCatedratico> {
             Connection enlace = conexion.obtener();
             try {
                 PreparedStatement pstm = enlace.prepareStatement(sql);
-                pstm.setString(1, element.getRFC());
+                pstm.setString(1, element.getRfc());
                 pstm.setString(2, element.getNombre());
                 pstm.execute();
                 return true;
@@ -41,9 +42,9 @@ public class DAOCatedratico implements  DAOGeneral<String, ModeloCatedratico> {
     @Override
     public List<ModeloCatedratico> consultar() {
         List<ModeloCatedratico> lista= new ArrayList<>();
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("RFC");
-        modelo.addColumn("Nombre");
+        //DefaultTableModel modelo = new DefaultTableModel();
+        //modelo.addColumn("RFC");
+        //modelo.addColumn("Nombre");
         if (conexion.abrir()){
             String sql = "SELECT * FROM catedratico";
             Connection enlace= conexion.obtener();
@@ -52,14 +53,14 @@ public class DAOCatedratico implements  DAOGeneral<String, ModeloCatedratico> {
                 ResultSet resultados= stnt.executeQuery(sql);
                 while (resultados.next()){
                     ModeloCatedratico catedratico=new ModeloCatedratico();
-                    catedratico.setRFC(resultados.getString("rfc"));
+                    catedratico.setRfc(resultados.getString("rfc"));
                     catedratico.setNombre(resultados.getString("nombre"));
                     lista.add(catedratico);
-                    Object[] fila = {catedratico.getRFC(), catedratico.getNombre()};
-                    modelo.addRow(fila);
+                    //Object[] fila = {catedratico.getRFC(), catedratico.getNombre()};
+                    //modelo.addRow(fila);
                 }
-                ConsultarCatedratico c1 = new ConsultarCatedratico();
-                c1.tableCatedratico.setModel(modelo);
+                //ConsultarCatedratico c1 = new ConsultarCatedratico();
+                //c1.tableCatedratico.setModel(modelo);
             }catch (SQLException e){
                 //throw new RuntimeException(e);
                 JOptionPane.showMessageDialog(null,

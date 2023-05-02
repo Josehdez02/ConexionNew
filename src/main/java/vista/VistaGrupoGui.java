@@ -1,6 +1,14 @@
 package vista;
 
+import dao.DAOCatedratico;
+import dao.DAOAlumno;
+import dao.DAOMateria;
+import modelo.ModeloAlumno;
+import modelo.ModeloCatedratico;
+import modelo.ModeloMateria;
+
 import javax.swing.*;
+import java.util.List;
 
 public class VistaGrupoGui extends JFrame {
     private JPanel panelPrincipal;
@@ -18,19 +26,30 @@ public class VistaGrupoGui extends JFrame {
     public JTextField jtxtHora;
     public JLabel lblSalon;
     public JTextField jtxtSalon;
-    private JComboBox cbxCatedratico;
+    public JComboBox cbxCatedratico;
     private JLabel lblCatedratico;
     private JLabel lblAlumno;
-    private JComboBox cbxAlumno;
+    public JComboBox cbxAlumno;
     private JLabel lblMateria;
-    private JComboBox cbxMateria;
+    public JComboBox cbxMateria;
 
     public VistaGrupoGui(){
         super("Ventana Grupo");
         setContentPane(panelPrincipal);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        setSize(800,150);
+        setSize(600,150);
+        DAOCatedratico daoCatedratico=new DAOCatedratico();
+        List<ModeloCatedratico> catedraticos = daoCatedratico.consultar();
+        DAOAlumno daoAlumno=new DAOAlumno();
+        List<ModeloAlumno> alumnos = daoAlumno.consultar();
+        DAOMateria daoMateria=new DAOMateria();
+        List<ModeloMateria> materias = daoMateria.consultar();
+        for (ModeloCatedratico e : daoCatedratico.consultar()){
+            cbxCatedratico.addItem(e);
+            cbxAlumno.addItem(e);
+            cbxMateria.addItem(e);
+        }
         setVisible(true);
     }
 }
