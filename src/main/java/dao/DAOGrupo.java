@@ -1,7 +1,10 @@
 package dao;
 
 import conexion.Conexion;
+import modelo.ModeloAlumno;
 import modelo.ModeloGrupo;
+import modelo.ModeloCatedratico;
+import modelo.ModeloMateria;
 import vista.ConsultarGrupo;
 
 import javax.swing.*;
@@ -10,7 +13,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAOGrupo  {
+public class DAOGrupo {
 
     private Conexion conexion;
 
@@ -22,13 +25,14 @@ public class DAOGrupo  {
 
     public boolean agregar(ModeloGrupo element) {
         if (conexion.abrir()) {
-            String sql = "INSERT INTO grupo(clave, hora, salon) VALUES(?,?,?)";
+            String sql = "INSERT INTO grupo(clave, hora, salon, catedratico) VALUES(?,?,?,?)";
             Connection enlace = conexion.obtener();
             try {
                 PreparedStatement pstm = enlace.prepareStatement(sql);
                 pstm.setInt(1, element.getClave());
                 pstm.setString(2, element.getHora());
                 pstm.setInt(3, element.getSalon());
+                pstm.setString(4, element.getModeloCatedratico().getRfc());
                 pstm.execute();
                 return true;
             } catch (SQLException e) {
@@ -47,8 +51,18 @@ public class DAOGrupo  {
         modelo.addColumn("Clave");
         modelo.addColumn("Hora");
         modelo.addColumn("Salon");
+        modelo.addColumn("Catedratico");
+        modelo.addColumn("Alumno");
+        modelo.addColumn("Materia");
         if (conexion.abrir()) {
-            String sql = "SELECT * FROM grupo";
+            String sql = "select grupo.clave, grupo.hora, grupo.salon," +
+                         "catedratico.nombre as catedratico, " +
+                         "alumno.nombre as alumno, " +
+                         "materia.nombre as materia " +
+                         "from grupo, catedratico, alumno, materia " +
+                         "where grupo.catedratico = catedratico.rfc " +
+                         "and grupo.alumno = alumno.nomControl " +
+                         "and grupo.materia = materia.id;";
             Connection enlace = conexion.obtener();
             try {
                 Statement stnt = enlace.createStatement();
@@ -58,19 +72,21 @@ public class DAOGrupo  {
                     grupo.setClave(resultados.getInt("Clave"));
                     grupo.setHora(resultados.getString("Hora"));
                     grupo.setSalon(resultados.getInt("Salon"));
+                    grupo.setModeloCatedratico(new ModeloCatedratico(
+                            resultados.getString("rfc"),
+                            resultados.getString("catedratico")));
+                    grupo.setModeloAlumno(new ModeloAlumno());
+                    grupo.setModeloMateria(new ModeloMateria());
                     lista.add(grupo);
-                    Object[] fila = {grupo.getClave(), grupo.getHora(), grupo.getSalon()};
+                    Object[] fila = {grupo.getClave(), grupo.getHora(),
+                            grupo.getSalon(), grupo.getModeloCatedratico(),
+                            grupo.getModeloAlumno(), grupo.getModeloMateria()};
                     modelo.addRow(fila);
                 }
                 ConsultarGrupo c1 = new ConsultarGrupo();
                 c1.tableGrupo.setModel(modelo);
             } catch (SQLException e) {
-                //throw new RuntimeException(e);
-                JOptionPane.showMessageDialog(null,
-                        "Ups! Fallo al intentar mostrar tabla Grupo.\n"
-                                + "Intente nuevamente",
-                        "Aviso",
-                        JOptionPane.ERROR_MESSAGE);
+                throw new RuntimeException(e);
             } finally {
                 conexion.cerrar();
             }
@@ -79,15 +95,14 @@ public class DAOGrupo  {
     }
 
 
-    public boolean actualizar(Integer clave, ModeloGrupo nuevo, Integer Salon) {
+    public boolean actualizar(Integer rfc, ModeloGrupo nuevo) {
         if (conexion.abrir()) {
-            String sql = "UPDATE grupo SET hora=? WHERE clave=? WHERE Salon=?";
+            String sql = "UPDATE grupo SET hora=?, WHERE clave=?";
             Connection enlace = conexion.obtener();
             try {
                 PreparedStatement stmt = enlace.prepareStatement(sql);
-                stmt.setString(1, nuevo.getHora());
-                stmt.setInt(2, clave);
-                stmt.setInt(3, Salon);
+                stmt.setString(1, nuevo.getHora());;
+                stmt.setInt(2, rfc);
                 stmt.executeUpdate();
                 return true;
             } catch (SQLException e) {
@@ -99,14 +114,11 @@ public class DAOGrupo  {
         return false;
     }
 
-
-
     public boolean eliminar(Integer clave) {
         if (conexion.abrir()) {
             String sql = "DELETE FROM grupo WHERE clave=?";
             Connection con = conexion.obtener();
-            try {
-                PreparedStatement statement = con.prepareStatement(sql);
+            try { PreparedStatement statement= con.prepareStatement(sql);
                 statement.setInt(1, clave);
                 statement.executeUpdate();
                 JOptionPane.showMessageDialog(null,
@@ -115,9 +127,9 @@ public class DAOGrupo  {
                         JOptionPane.INFORMATION_MESSAGE
                 );
                 return true;
-            } catch (SQLException e) {
+            }catch (SQLException e){
                 throw new RuntimeException(e);
-            } finally {
+            }finally {
                 conexion.cerrar();
             }
         }

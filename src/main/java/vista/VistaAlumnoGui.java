@@ -17,7 +17,7 @@ public class VistaAlumnoGui extends JFrame{
     public JButton btnEliminar;
    // public JComboBox cbxEspecialidad;
     private JLabel lblEspecialidad;
-    private JPanel panelPricipal;
+    private JPanel panelPrincipal;
     private JLabel lblNumControl;
     private JPanel panelCentro;
     private JLabel lblNombre;
@@ -28,10 +28,10 @@ public class VistaAlumnoGui extends JFrame{
 
     public VistaAlumnoGui(){
         super("Ventana Alumno");
-        setContentPane(panelPricipal);
+        setContentPane(panelPrincipal);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        setSize(500,200);
+        setSize(600,150);
         DAOEspecialidad daoEspecialidad=new DAOEspecialidad();
         List<ModeloEspecialidad> especialidades = daoEspecialidad.consultar();
        // cbxEspecialidad.removeAllItems();

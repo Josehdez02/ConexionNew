@@ -1,14 +1,14 @@
 package modelo;
 
 public class ModeloCatedratico {
-    public String RFC;
-    public String nombre;
+    private String rfc;
+    private String nombre;
 
     public ModeloCatedratico() {
     }
 
-    public ModeloCatedratico(String RFC, String nombre) {
-        this.RFC = RFC;
+    public ModeloCatedratico(String rfc, String nombre) {
+        this.rfc = rfc;
         this.nombre = nombre;
     }
 
@@ -20,20 +20,15 @@ public class ModeloCatedratico {
         this.nombre = nombre;
     }
 
-    public String getRFC() {
-        return RFC;
+    public String getRfc() {
+        return rfc;
     }
 
-    public void setRFC(String RFC) {
-        this.RFC = RFC;
+    public void setRfc(String rfc) {
+        this.rfc = rfc;
     }
 
 
     @Override
-    public String toString() {
-        return "Modelo Catedratico{" +
-                "RFC=" + RFC +
-                ", Nombre='" + nombre + '\'' +
-                '}';
+    public String toString() {return this.nombre; };
     }
-}

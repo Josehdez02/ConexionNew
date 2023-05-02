@@ -29,7 +29,7 @@ public class ControladorCatedraticoGui implements ActionListener {
         if (this.vista.btnNuevo == evento.getSource()) {
             clear();
         } else if (vista.btnGuardar == evento.getSource()) {
-            modelo.setRFC(vista.jtxRFC.getText());
+            modelo.setRfc(vista.jtxRFC.getText());
             modelo.setNombre(vista.jtxNombre.getText());
             // DAOEspecialidad dao=new DAOEspecialidad();
             if (dao.agregar(modelo)) {

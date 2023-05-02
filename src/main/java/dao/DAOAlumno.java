@@ -103,7 +103,7 @@ public class DAOAlumno implements  DAOGeneral<Integer, ModeloAlumno> {
     @Override
     public boolean actualizar(Integer id, ModeloAlumno nuevo) {
         if (conexion.abrir()){
-            String sql="UPDATE especialidad SET nombre=? WHERE NumContro=?";
+            String sql="UPDATE especialidad SET nombre=? WHERE NomControl=?";
             Connection enlace= conexion.obtener();
             try {
                 PreparedStatement stmt = enlace.prepareStatement(sql);

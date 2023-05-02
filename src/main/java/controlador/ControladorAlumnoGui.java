@@ -1,11 +1,11 @@
 package controlador;
 
 import dao.DAOAlumno;
-import dao.DAOEspecialidad;
 import modelo.ModeloAlumno;
+import modelo.ModeloCatedratico;
 import modelo.ModeloEspecialidad;
 import vista.VistaAlumnoGui;
-import vista.VistaEspecialidadGui;
+
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -28,29 +28,19 @@ public class ControladorAlumnoGui implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent evento) {
-
         DAOAlumno dao=new DAOAlumno();
-        //Object selectedItem = vistaAlumno.cbxEspecialidad.getSelectedItem();
-
-// Verificar si el elemento seleccionado es de tipo "ModeloEspecialidad"
-       // if (selectedItem instanceof ModeloEspecialidad) {
-            // Asignar el objeto seleccionado al atributo "modeloEspecialidad"
-         //   modeloAlumno.setModeloEspecialidad((ModeloEspecialidad) selectedItem);
-        //}
         if (this.vistaAlumno.btnNuevo==evento.getSource()){
             clear();
         }
         else if (vistaAlumno.btnGuardar==evento.getSource()) {
             modeloAlumno.setNumControl(Integer.parseInt(vistaAlumno.jtxNumControl.getText()));
             modeloAlumno.setNombre(vistaAlumno.jtxNombre.getText());
-            //modeloAlumno.setModeloEspecialidad(vistaAlumno.);
             modeloAlumno.setModeloEspecialidad((ModeloEspecialidad) vistaAlumno.cbxEspecialidad.getSelectedItem());
             if (dao.agregar(modeloAlumno)){
                 JOptionPane.showMessageDialog(null,
                         "Registro Guardado!",
                         "Aviso",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
+                        JOptionPane.INFORMATION_MESSAGE);
             }else {
                 JOptionPane.showMessageDialog(null,
                         "Ups! Fallo al intentar agregar Alumno.\n"
@@ -64,10 +54,10 @@ public class ControladorAlumnoGui implements ActionListener{
             Salir();
         } else if (vistaAlumno.btnEliminar==evento.getSource()) {
             dao.eliminar(Integer.parseInt(vistaAlumno.jtxNumControl.getText()));
-
-            // }
         } else if (vistaAlumno.btnActualizar==evento.getSource()) {
-            //dao.actualizar();
+            ModeloAlumno nuevo=new ModeloAlumno();
+            nuevo.setNombre(vistaAlumno.jtxNombre.getText());
+            dao.actualizar(Integer.valueOf(vistaAlumno.jtxNumControl.getText()),nuevo);
         }
     }
 
