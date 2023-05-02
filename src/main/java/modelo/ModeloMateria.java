@@ -31,8 +31,7 @@ public class ModeloMateria {
 
     @Override
     public String toString() {
-        return "Materia{" + "id=" + id +
-                ", nombre='" + nombre + '\'' +'}';
+        return this.nombre;
     }
 
     public void imprimir(){

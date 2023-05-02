@@ -23,41 +23,5 @@ public class ConsultarCatedratico extends JFrame{
 
         setVisible(true);
     }
-    Conexion conexion=new Conexion();
-    public List<ModeloCatedratico> consultar() {
-        List<ModeloCatedratico> lista= new ArrayList<>();
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("RFC");
-        modelo.addColumn("Nombre");
-        if (conexion.abrir()){
-            String sql = "SELECT * FROM catedratico";
-            Connection enlace= conexion.obtener();
-            try {
-                Statement stnt = enlace.createStatement();
-                ResultSet resultados= stnt.executeQuery(sql);
-                while (resultados.next()){
-                    ModeloCatedratico catedratico=new ModeloCatedratico();
-                    catedratico.setRfc(resultados.getString("rfc"));
-                    catedratico.setNombre(resultados.getString("nombre"));
-                    lista.add(catedratico);
-                    Object[] fila = {catedratico.getRfc(), catedratico.getNombre()};
-                    modelo.addRow(fila);
-                }
-                // ConsultarEspecialidad c1 = new ConsultarEspecialidad();
-                tableCatedratico.setModel(modelo);
-
-            }catch (SQLException e){
-                //throw new RuntimeException(e);
-                JOptionPane.showMessageDialog(null,
-                        "Ups! Fallo al intentar mostrar tabla Especialidad.\n"
-                                +"Intente nuevamente",
-                        "Aviso",
-                        JOptionPane.ERROR_MESSAGE);
-            }finally {
-                conexion.cerrar();
-            }
-        }
-        return lista.stream().toList();
-    }
 }
 

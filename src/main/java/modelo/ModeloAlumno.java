@@ -41,10 +41,7 @@ public class ModeloAlumno {
 
     @Override
     public String toString() {
-        return "ModeloAlumno{" +
-                "numControl=" + numControl +
-                ", nombre='" + nombre + '\'' +
-                '}';
+        return this.nombre;
     }
 
     public void imprmir() {

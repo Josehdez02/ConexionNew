@@ -47,7 +47,11 @@ public class VistaGrupoGui extends JFrame {
         List<ModeloMateria> materias = daoMateria.consultar();
         for (ModeloCatedratico e : daoCatedratico.consultar()){
             cbxCatedratico.addItem(e);
+        }
+        for (ModeloAlumno e : daoAlumno.consultar()){
             cbxAlumno.addItem(e);
+        }
+        for (ModeloMateria e : daoMateria.consultar()){
             cbxMateria.addItem(e);
         }
         setVisible(true);
