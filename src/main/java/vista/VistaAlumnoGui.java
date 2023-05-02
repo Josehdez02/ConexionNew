@@ -22,7 +22,6 @@ public class VistaAlumnoGui extends JFrame{
     private JPanel panelCentro;
     private JLabel lblNombre;
     private JPanel panelSur;
-    public JButton btnActualizar;
     public JComboBox cbxEspecialidad;
     //public final static ArrayList<ModeloEspecialidad>esepecialida=new ArrayList<>();
 
